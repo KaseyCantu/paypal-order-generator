@@ -39,7 +39,6 @@
     "appsDir": "app",
     "libsDir": "libs"
   },
-  "defaultProject": "order-generator",
   "pluginsConfig": {
     "@nrwl/js": {
       "analyzeSourceFiles": true

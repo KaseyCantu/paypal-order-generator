@@ -40,6 +40,7 @@
   },
   "version": "0.0.1",
   "dependencies": {
-    "inquirer": "^9.1.5"
+    "inquirer": "^9.1.5",
+    "puppeteer": "^19.8.3"
   }
 }
