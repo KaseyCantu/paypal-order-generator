@@ -93,6 +93,10 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 ### Node
+# Built files
+dist
+tmp
+
 # Logs
 logs
 *.log
@@ -184,7 +188,6 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
 
 # Gatsby files
 .cache/

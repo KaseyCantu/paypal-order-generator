@@ -1,0 +1,6 @@
+{
+  "name": "@paypal-order-generator/order-generator",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "main": "./main.cjs"
+}

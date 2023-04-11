@@ -5,19 +5,24 @@
   },
   "description": "",
   "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "@nrwl/esbuild": "15.9.2",
     "@nrwl/eslint-plugin-nx": "15.9.2",
     "@nrwl/js": "15.9.2",
     "@nrwl/linter": "15.9.2",
     "@nrwl/nx-cloud": "^15.3.5",
     "@nrwl/vite": "^15.9.2",
+    "@types/node": "^18.15.11",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
     "@vitest/coverage-c8": "~0.25.8",
     "@vitest/ui": "^0.25.8",
+    "esbuild": "^0.17.5",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
     "jsdom": "~20.0.3",
     "prettier": "^2.6.2",
+    "tsup": "^6.7.0",
     "typescript": "~4.9.5",
     "vite": "^4.0.1",
     "vite-plugin-dts": "~1.7.1",
@@ -26,7 +31,7 @@
     "vitest": "^0.25.8"
   },
   "engines": {
-    "node": ">=18.12.0"
+    "node": ">=18.15.0"
   },
   "packageManager": "yarn@3.5.0",
   "publishConfig": {
@@ -36,11 +41,14 @@
     "type": "git"
   },
   "scripts": {
+    "build": "nx run-many --target=build",
+    "start": "yarn build && node build/main.cjs",
     "test": "nx run-many --target=test"
   },
   "version": "0.0.1",
   "dependencies": {
     "inquirer": "^9.1.5",
-    "puppeteer": "^19.8.3"
+    "puppeteer": "^19.8.3",
+    "ts-node": "^10.9.1"
   }
 }
