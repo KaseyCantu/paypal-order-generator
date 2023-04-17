@@ -56,7 +56,7 @@ const sendMoneyToCreateOrders = async (
 
 export const paypalPuppet = async () => {
   let counter = 0;
-  const recipient = 'luxe.hahn+paypal1@auctane.com';
+  const recipient = 'kasey+paypal4@auctane.com';
   const numberOfOrdersToCreate = 30;
   const browser = await puppeteer.launch({ headless: false });
   // const context = await browser.createIncognitoBrowserContext();
