@@ -1,6 +1,6 @@
-import puppeteer, { Page } from 'puppeteer';
-import { faker } from '@faker-js/faker';
-import inquirer from 'inquirer';
+import puppeteer, { Page } from "puppeteer";
+import { faker } from "@faker-js/faker";
+import inquirer from "inquirer";
 
 const delay = (time: number): Promise<void> =>
   new Promise((resolve) => setTimeout(resolve, time));
@@ -13,7 +13,7 @@ const sendMoneyToCreateOrders = async (
   recipient: string
 ): Promise<void> => {
   const recipientInput = await page.waitForSelector(
-    'input[id="fn-sendRecipient"]',
+    "input[id='fn-sendRecipient']",
     { visible: true }
   );
   await recipientInput?.click();
@@ -27,28 +27,28 @@ const sendMoneyToCreateOrders = async (
   await selectRecipient?.click();
 
   const fundingInput = await page.waitForSelector(
-    'xpath///*[@id="fn-amount"]',
+    "xpath///*[@id='fn-amount']",
     { visible: true }
   );
   await fundingInput?.click();
   await fundingInput?.type(faker.finance.amount(1, 15, 2));
 
   const continueToSendFunds = await page.waitForSelector(
-    'xpath///button[contains(text(), "Continue")]',
+    "xpath///button[contains(text(), 'Continue')]",
     { visible: true }
   );
   await delayBy500Milliseconds();
   await continueToSendFunds?.click();
 
   const sendPaymentButton = await page.waitForSelector(
-    'xpath///button[contains(text(), "Send Payment Now")]',
+    "xpath///button[contains(text(), 'Send Payment Now')]",
     { visible: true }
   );
   await delayBy500Milliseconds();
   await sendPaymentButton?.click();
 
   const sendMoreMoneyButton = await page.waitForSelector(
-    'xpath///a[contains(text(), "Send More Money")]',
+    "xpath///a[contains(text(), 'Send More Money')]",
     { visible: true }
   );
   await delayBy500Milliseconds();
@@ -64,41 +64,41 @@ export type PayPalPuppetArgs = {
   numberOfOrdersToCreate: number;
 };
 
-const paypalPuppet = async ({sender, recipient, numberOfOrdersToCreate}: PayPalPuppetArgs) => {
+const paypalPuppet = async ({ sender, recipient, numberOfOrdersToCreate }: PayPalPuppetArgs) => {
   let counter = 0;
   const browser = await puppeteer.launch({ headless: false });
   const context = await browser.createIncognitoBrowserContext();
   const page = await context.newPage();
 
   try {
-    await page.goto('https://www.sandbox.paypal.com/us/home');
+    await page.goto("https://www.sandbox.paypal.com/us/home");
 
     // Set screen size
     await page.setViewport({ width: 1200, height: 1400 });
 
-    const startLoginButton = await page.waitForSelector('text/Log In');
+    const startLoginButton = await page.waitForSelector("text/Log In");
     await startLoginButton?.click();
 
-    const loginEmailInput = await page.waitForSelector('input[id="email"]', {
-      visible: true,
+    const loginEmailInput = await page.waitForSelector("input[id='email']", {
+      visible: true
     });
     await loginEmailInput?.click();
     await loginEmailInput?.type(sender.email);
 
-    const loginNextButton = await page.waitForSelector('button[id="btnNext"]');
+    const loginNextButton = await page.waitForSelector("button[id='btnNext']");
     await loginNextButton?.click();
 
-    const passwordInput = await page.waitForSelector('input[id="password"]', {
-      visible: true,
+    const passwordInput = await page.waitForSelector("input[id='password']", {
+      visible: true
     });
     await passwordInput?.click();
     await passwordInput?.type(sender.password);
 
-    const loginButton = await page.waitForSelector('button[id="btnLogin"]');
+    const loginButton = await page.waitForSelector("button[id='btnLogin']");
     await loginButton?.click();
 
     const sendMoney = await page.waitForSelector(
-      'xpath///div[contains(text(), "Send money")]',
+      "xpath///div[contains(text(), 'Send money')]",
       { visible: true }
     );
     await delayBy250Milliseconds();
@@ -121,36 +121,36 @@ const paypalPuppet = async ({sender, recipient, numberOfOrdersToCreate}: PayPalP
 export const automatePayPalOrderCreation = async () => inquirer
   .prompt([
     {
-      type: 'input',
-      name: 'senderEmail',
+      type: "input",
+      name: "senderEmail",
       message: "(Sender) PayPal Sandbox E-mail:",
       filter: String
     },
     {
-      type: 'input',
-      name: 'senderPassword',
+      type: "input",
+      name: "senderPassword",
       message: "(Sender) PayPal Sandbox Password:",
       filter: String
     },
     {
-      type: 'input',
-      name: 'recipientEmail',
+      type: "input",
+      name: "recipientEmail",
       message: "(Recipient) PayPal Sandbox E-mail:",
       filter: String
     },
     {
-      type: 'input',
-      name: 'numberOfOrders',
+      type: "input",
+      name: "numberOfOrders",
       message: "Number of orders to generate:",
       filter: Number
     },
     {
-      type: 'confirm',
-      name: 'headless',
+      type: "confirm",
+      name: "headless",
       message: "Run headless browser?",
       filter: Boolean,
       default: false
-    },
+    }
   ])
   .then((answers: any) => {
     paypalPuppet({
@@ -160,12 +160,12 @@ export const automatePayPalOrderCreation = async () => inquirer
       },
       recipient: answers.recipientEmail,
       numberOfOrdersToCreate: answers.numberOfOrders
-    })
+    });
   })
   .catch((error) => {
     if (error.isTtyError) {
-      console.error(error)
+      console.error(error);
     } else {
-      console.error("Puppeteer can't even...")
+      console.error("Puppeteer can't even...");
     }
   });
