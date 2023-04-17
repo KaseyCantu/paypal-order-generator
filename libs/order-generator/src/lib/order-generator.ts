@@ -56,17 +56,18 @@ const sendMoneyToCreateOrders = async (
 };
 
 export type PayPalPuppetArgs = {
+  numberOfOrdersToCreate: number;
+  recipient: string;
+  runHeadless: boolean;
   sender: {
     email: string;
     password: string;
   };
-  recipient: string;
-  numberOfOrdersToCreate: number;
 };
 
-const paypalPuppet = async ({ sender, recipient, numberOfOrdersToCreate }: PayPalPuppetArgs) => {
+const paypalPuppet = async ({ numberOfOrdersToCreate, sender, recipient, runHeadless }: PayPalPuppetArgs) => {
   let counter = 0;
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({ headless: runHeadless });
   const context = await browser.createIncognitoBrowserContext();
   const page = await context.newPage();
 
@@ -149,17 +150,18 @@ export const automatePayPalOrderCreation = async () => inquirer
       name: "headless",
       message: "Run headless browser?",
       filter: Boolean,
-      default: false
+      default: true
     }
   ])
   .then((answers: any) => {
     paypalPuppet({
+      numberOfOrdersToCreate: answers.numberOfOrders,
+      recipient: answers.recipientEmail,
+      runHeadless: answers.headless,
       sender: {
         email: answers.senderEmail,
         password: answers.senderPassword
       },
-      recipient: answers.recipientEmail,
-      numberOfOrdersToCreate: answers.numberOfOrders
     });
   })
   .catch((error) => {
