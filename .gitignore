@@ -94,6 +94,7 @@ fabric.properties
 
 ### Node
 # Built files
+build
 dist
 tmp
 
