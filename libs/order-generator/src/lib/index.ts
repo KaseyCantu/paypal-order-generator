@@ -1,1 +1,1 @@
-export { paypalPuppet } from './order-generator';
+export { automatePayPalOrderCreation } from './order-generator';

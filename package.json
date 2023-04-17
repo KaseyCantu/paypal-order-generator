@@ -12,6 +12,7 @@
     "@nrwl/linter": "15.9.2",
     "@nrwl/nx-cloud": "^15.3.5",
     "@nrwl/vite": "^15.9.2",
+    "@types/inquirer": "^9.0.3",
     "@types/node": "^18.15.11",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",

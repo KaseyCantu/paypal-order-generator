@@ -1,5 +1,5 @@
-import { paypalPuppet } from './lib';
+import { automatePayPalOrderCreation } from "./lib";
 
-(async () => paypalPuppet())();
+(async () => await automatePayPalOrderCreation())();
 
 
