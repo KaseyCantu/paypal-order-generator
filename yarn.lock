@@ -1955,6 +1955,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nrwl/nx@npm:^7.8.7":
+  version: 7.8.7
+  resolution: "@nrwl/nx@npm:7.8.7"
+  peerDependencies:
+    jasmine-marbles: 0.4.0
+  checksum: c58cfa99df02f9a635cdcdac91bda65710c542fc4284c7faed34c75db8ddba26fd753c04e7af93831be9069adafe29df5660370aee2186cfb9b4b83d742b3f79
+  languageName: node
+  linkType: hard
+
 "@nrwl/tao@npm:15.9.2":
   version: 15.9.2
   resolution: "@nrwl/tao@npm:15.9.2"
@@ -5457,7 +5466,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nx@npm:15.9.2":
+"nx@npm:15.9.2, nx@npm:^15.9.2":
   version: 15.9.2
   resolution: "nx@npm:15.9.2"
   dependencies:
@@ -6158,6 +6167,7 @@ __metadata:
     "@nrwl/eslint-plugin-nx": 15.9.2
     "@nrwl/js": 15.9.2
     "@nrwl/linter": 15.9.2
+    "@nrwl/nx": ^7.8.7
     "@nrwl/nx-cloud": ^15.3.5
     "@nrwl/vite": ^15.9.2
     "@types/inquirer": ^9.0.3
@@ -6171,6 +6181,7 @@ __metadata:
     eslint-config-prettier: 8.1.0
     inquirer: ^9.1.5
     jsdom: ~20.0.3
+    nx: ^15.9.2
     prettier: ^2.6.2
     puppeteer: ^19.8.3
     ts-node: ^10.9.1
