@@ -42,9 +42,9 @@
     "type": "git"
   },
   "scripts": {
-    "build": "nx run-many --target=build",
+    "build": "yarn run nx run-many --target=build",
     "start": "yarn build && node build/main.cjs",
-    "test": "nx run-many --target=test"
+    "test": "yarn run nx run-many --target=test"
   },
   "version": "0.0.1",
   "dependencies": {
